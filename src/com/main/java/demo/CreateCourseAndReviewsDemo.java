@@ -21,7 +21,7 @@ import com.main.java.demo.entity.Review;
  * @author 15197
  *
  */
-public class CreateCoursesDemo {
+public class CreateCourseAndReviewsDemo {
 
 	/**
 	 * @param args
@@ -44,33 +44,24 @@ public class CreateCoursesDemo {
 			// start transaction
 			session.beginTransaction();
 			
-			// get the instructor from db
-			int theId=1;
-			Instructor tempInstructor = session.get(Instructor.class, theId);
+			// create a course
+			// Course tempCourse = new Course("Pacman - How To Score One Million Points");
 			
-			// create some courses
-			List<Course> tempCourses = new ArrayList<Course>();
-			tempCourses.add(new Course("Maths"));
-			tempCourses.add(new Course("Hindi"));
-			tempCourses.add(new Course("Sports"));
-			tempCourses.add(new Course("Tamil"));
-			tempCourses.add(new Course("Malayalam"));
-			tempCourses.add(new Course("Arts"));
-			tempCourses.add(new Course("English"));
-			tempCourses.add(new Course("Konkan"));
-			tempCourses.add(new Course("Marathi"));
+			// get the course from session db
+			int theId=2;
+			System.out.println("Reading Course");
+			Course tempCourse = session.get(Course.class, theId);
 			
+			// add some reviews
+			tempCourse.add(new Review("Great Hindi"));
+			tempCourse.add(new Review("Cool Hindi. Would like to hear more"));
+			tempCourse.add(new Review("Blah. Hindi is not a good Course"));
 			
-			for(Course course : tempCourses)	{
-				// add courses to instructor
-				tempInstructor.add(course);
-				
-				// save the courses
-				session.save(course);
-			}
-			/*for(Course course : tempCourses)	{
-				
-			}*/
+			// save the course ... and leverage the cascade all
+			System.out.println("Saving the review");
+			System.out.println("tempCourse: "+tempCourse);
+			System.out.println("Reviews: "+tempCourse.getReviews());
+			session.save(tempCourse);
 			
 			// commit the transaction
 			session.getTransaction().commit();

@@ -11,6 +11,7 @@ import org.hibernate.cfg.Configuration;
 import com.main.java.demo.entity.Course;
 import com.main.java.demo.entity.Instructor;
 import com.main.java.demo.entity.InstructorDetail;
+import com.main.java.demo.entity.Review;
 
 /**
  * @author 15197
@@ -28,6 +29,7 @@ public class CreateInstructorDemo {
 								.addAnnotatedClass(Instructor.class)
 								.addAnnotatedClass(InstructorDetail.class)
 								.addAnnotatedClass(Course.class)
+								.addAnnotatedClass(Review.class)
 								.buildSessionFactory();
 		
 		// create session
@@ -36,14 +38,14 @@ public class CreateInstructorDemo {
 		try	{
 			// now use the session object to save/retrieve Java objects
 			// create an Instructor object
-			//Instructor tempInstructor = new Instructor("Madhukar", "Mani","madhumani1@gmail.com");
-			//InstructorDetail tempInstructorDetail = new InstructorDetail("http://youtube.com","Playing Chess!!!");
+			Instructor tempInstructor = new Instructor("Madhukar", "Mani","madhumani1@gmail.com");
+			InstructorDetail tempInstructorDetail = new InstructorDetail("http://youtube.com","Playing Chess!!!");
 			
 			//Instructor tempInstructor = new Instructor("Priyanka", "Bhadran","prinku4u@gmail.com");
 			//InstructorDetail tempInstructorDetail = new InstructorDetail("http://instagram.com","Photography!!!");
 			
-			Instructor tempInstructor = new Instructor("Neil", "Martis","neil.martis@gmail.com");
-			InstructorDetail tempInstructorDetail = new InstructorDetail("http://usa.com","America!!!");
+			//Instructor tempInstructor = new Instructor("Neil", "Martis","neil.martis@gmail.com");
+			//InstructorDetail tempInstructorDetail = new InstructorDetail("http://usa.com","America!!!");
 			
 			// associate the objects together
 			tempInstructor.setInstructorDetail(tempInstructorDetail);
